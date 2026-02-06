@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+<h1 >Itens Gerados</h1>
+<table>
+    <tr>
+        <th>Item</th>
+        <th>Rank</th>
+        <th>Descrição</th>
+        <th>Ações</th>
+    </tr>
+    <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th>
+            <input type="submit" value="Editar">
+            <input type="submit" value="Deletar">
+        </th>
+    </tr>
+</table>
+<form action="/generate-items" style="align-self: flex-end;">
+        <input type="submit" value="Gerar itens">
+</form>
+{% endblock %}
