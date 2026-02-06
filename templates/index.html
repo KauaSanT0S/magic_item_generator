@@ -8,8 +8,8 @@
 <h1>Gerador de Itens Aleatórios</h1>
 <div style="display: flex; flex-direction: column; align-items: center; margin-bottom: 20px;">
 <form action="{{ url_for('routes.generate_items') }}" method="post">
-    <label for="itemQtd">Quantidade de Itens</label>
-    <input type="number" id="itemQtd" name="itemQtd" min="1" value="1">
+    <label for="itemQtd" style="font-weight: bold;">Quantidade de Itens</label>
+    <input type="number" id="itemQtd" name="itemQtd" min="1">
     <input type="submit" value="Gerar itens">
 </form>
 </div>

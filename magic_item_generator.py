@@ -14,7 +14,7 @@ piercing_weapons = [
 ]
 ranged_weapons = [
     "Arco", "Arco Longo", "Arco de Guerra", "Besta", "Besta pesada",
-    "Funda", "Arpão de Arremesso", "Bumerangue"
+    "Arpão de Arremesso"
 ]
 
 religious_obj = [
@@ -97,9 +97,10 @@ shields_equipments = [
     "Escudo do Vigia",
     "Escudo do Guardião"
 ]
-all_weapons = edged_weapons + impact_weapons + piercing_weapons + ranged_weapons
+all_weapons = edged_weapons + impact_weapons + piercing_weapons
 all_obj = religious_obj + study_obj + common_obj + mystic_obj + gear_equipments
 all_equipments = armors_equipments + shields_equipments
+all_items = all_weapons + all_obj + all_equipments
 
 gods_names = [
     "Aharadak", "Allihanna", "Arsenal", "Azgher", "Hyninn",
@@ -126,17 +127,26 @@ def generate_itens(itemQtd):
     item_list = []
 
     for item in range(itemQtd):
-        selected_type, selected_god = choice(all_obj), choice(gods_names)
+        selected_type, selected_god = choice(all_items), choice(gods_names)
+        
+        damage_type = ""
+
+        if selected_type in edged_weapons:
+            damage_type = "cortante"
+        elif selected_type in impact_weapons:
+            damage_type = "de impacto"
+        else:
+            damage_type = "perfurante"
         itemDict = {
             "itemType": selected_type,
             "itemName": f"{selected_type} de {selected_god}"
         }
         if itemDict["itemType"] in all_weapons:
-            itemDict["itemDescription"] = f"{choice(damages)} de dano"
+            itemDict["itemDescription"] = f"{choice(damages)} de dano {damage_type}"
         elif itemDict["itemType"] in all_obj:
-            itemDict["itemDescription"] = f"{randint(4, 16)} de bônus em {choice(skills_names)}"
+            itemDict["itemDescription"] = f"+{randint(4, 16)} em {choice(skills_names)}"
         else:
-            itemDict["itemDescription"] = f"{randint(4, 16)} de defesa"
+            itemDict["itemDescription"] = f"+{randint(4, 16)} de Defesa"
         item_list.append({
         "name": itemDict["itemName"],
         "description": itemDict["itemDescription"]

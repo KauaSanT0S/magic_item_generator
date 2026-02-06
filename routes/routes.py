@@ -18,11 +18,7 @@ def generate_items():
 
         for item in item_dicts:
             db.session.add(
-                Item(
-                    name=item["name"],
-                    description=item["description"]
-                )
-            )
+                Item(name=item["name"], description=item["description"]))
         
         db.session.commit()
 
