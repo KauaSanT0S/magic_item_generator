@@ -1,12 +1,7 @@
-# Python cache
 __pycache__/
 *.py[cod]
 *.pyo
 *.pyd
-
-# Diretórios de cache do Flask ou FastAPI, caso existam
 instance/
 *.sqlite3
-
-# Cache do seu módulo routes
 routes/__pycache__/
