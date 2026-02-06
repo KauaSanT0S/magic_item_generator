@@ -1,5 +1,4 @@
-from random import *
-from os import system, name
+from random import choice, randint
 
 edged_weapons = [
     "Espada Longa", "Espada Curta", "Cimitarra", "Katana", "Adaga",
@@ -10,7 +9,7 @@ impact_weapons = [
     "Cajado", "Marreta", "Mangual Pesado", "Maça Estrelada", "Porrete"
 ]
 piercing_weapons = [
-    "Lança", "Rapieira", "Florete", "Tridente", "Pique"
+    "Lança", "Rapieira", "Florete", "Tridente", "Pique",
     "Adaga Perfurante", "Estoque", "Arpão", "Faca"
 ]
 ranged_weapons = [
@@ -35,7 +34,7 @@ study_obj = [
     "Mapa Astral",
     "Pena de Corvo",
     "Globo de Navegação",
-    "Manuscrito Antigo"
+    "Manuscrito Antigo",
     "Tinta de Registro",
     "Diário de Campo",
 ]
@@ -66,7 +65,7 @@ mystic_obj = [
 gear_equipments = [
     "Luvas de Couro",
     "Botas Reforçadas",
-    "Bracelete de Ferro"
+    "Bracelete de Ferro",
     "Colar Protetor",
     "Anel de Energia",
     "Capa Leve",
@@ -119,63 +118,27 @@ skills_names = [
     "Religião", "Sobrevivência", "Vontade"
 ]
 
-damages_rank1 = ["1d6", "2d4", "1d8"]
-damages_rank2 = ["2d6", "1d10", "3d4"]
-damages_rank3 = ["2d8", "3d6", "2d10"]
+damages = ["1d6", "2d4", "1d8", "2d6", "1d10", "3d4", "2d8", "3d6", "2d10"]
 
-def cls():
-    system('cls' if name == 'nt' else 'clear')
+itemQtd = 5
 
-def generate_itens():
-    run_again = 1
-    while run_again == 1:
-        cls()
-        item_list = []
+def generate_itens(itemQtd):
+    item_list = []
 
-        type_selection = int(input("Selecione um tipo de objeto:\n1 - Arma\n2 - Objeto\n3 - Armadura\n\n"))
-        cls()
-        quantity_selection = int(input("Selecione uma quantidade de itens: \n\n"))
-        cls()
-        rank_selection = int(input("Selecione um Rank\n1 - Rank 1\n2 - Rank 2\n3 - Rank 3\n\n"))
-        cls()
-
-        for i in range(quantity_selection):
-            item_god_name = choice(gods_names)
-
-            if rank_selection == 1:
-                item_bonus = randint(2, 6)
-            elif rank_selection == 2:
-                item_bonus = randint(7, 11)
-            else:
-                item_bonus = randint(12, 16)
-            if type_selection == 1:
-                item_type = choice(all_weapons)
-                if item_type in edged_weapons:
-                    damage_type = "cortante"
-                elif item_type in impact_weapons:
-                    damage_type = "impactante"
-                else:
-                    damage_type = "perfurante"
-                if rank_selection == 1:
-                    item_damage = choice(damages_rank1)
-                if rank_selection == 2:
-                    item_damage = choice(damages_rank2)
-                else:
-                    item_damage = choice(damages_rank3)
-                item_name = f"- {item_type} de {item_god_name}: {item_damage} de dano {damage_type}."
-
-            elif type_selection == 2:
-                item_type = choice(all_obj)
-                item_skill = choice(skills_names)
-                item_name = f"- {item_name} de {item_god_name}: +{item_bonus} em {item_skill}."
-
-            else:
-                item_type = choice(all_equipments)
-                item_name = f"- {item_type} de {item_god_name}: +{item_bonus}"
-            
-            print(f"{item_name}\n")
-            item_list.append(item_name)
-        run_again = int(input("\nDeseja continuar?\n1 - Sim\n2 - Não\n"))
-        cls()
-    
+    for item in range(itemQtd):
+        selected_type, selected_god = choice(all_obj), choice(gods_names)
+        itemDict = {
+            "itemType": selected_type,
+            "itemName": f"{selected_type} de {selected_god}"
+        }
+        if itemDict["itemType"] in all_weapons:
+            itemDict["itemDescription"] = f"{choice(damages)} de dano"
+        elif itemDict["itemType"] in all_obj:
+            itemDict["itemDescription"] = f"{randint(4, 16)} de bônus em {choice(skills_names)}"
+        else:
+            itemDict["itemDescription"] = f"{randint(4, 16)} de defesa"
+        item_list.append({
+        "name": itemDict["itemName"],
+        "description": itemDict["itemDescription"]
+        })
     return item_list

@@ -6,24 +6,27 @@
 
 {% block body %}
 <h1 >Itens Gerados</h1>
+<div style="display: flex; flex-direction: column;">
 <table>
     <tr>
+        <th></th>
         <th>Item</th>
-        <th>Rank</th>
         <th>Descrição</th>
-        <th>Ações</th>
+        <th></th>
     </tr>
+    {% for item in items %}
     <tr>
-        <th></th>
-        <th></th>
-        <th></th>
+        <th>{{ item.id }}</th>
+        <th>{{ item.name }}</th>
+        <th>{{ item.description }}</th>
         <th>
-            <input type="submit" value="Editar">
             <input type="submit" value="Deletar">
         </th>
     </tr>
+    {% endfor %}
 </table>
 <form action="/generate-items" style="align-self: flex-end;">
-        <input type="submit" value="Gerar itens">
+        <input type="submit" value="Gerar itens" style="margin-top: 15px;">
 </form>
+</div>
 {% endblock %}
