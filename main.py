@@ -1,3 +1,8 @@
-from magic_item_generator import *
+from flask import Flask
+from routes.routes import routes
 
-generate_itens()
+app = Flask(__name__)
+app.register_blueprint(routes)
+
+if __name__ == "__main__":
+    app.run()
