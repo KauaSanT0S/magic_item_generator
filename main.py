@@ -1,9 +1,7 @@
 from flask import Flask
 from routes.routes import routes
-from flask_sqlalchemy import SQLAlchemy
 import os
 from db import db
-from models import Item
 
 app = Flask(__name__)
 base_dir = os.path.abspath(os.path.dirname(__file__))

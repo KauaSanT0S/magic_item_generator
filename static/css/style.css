@@ -1,19 +1,24 @@
-body {
-    display: flex;
-    flex-direction: column;
-}
-
 table {
     border-collapse: collapse;
     width: 100%;
+    table-layout: fixed; /* importantíssimo pra larguras fixas funcionarem */
 }
 
 th, td {
     border: 1px solid #ccc;
     padding: 8px;
     text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-th {
-    background: #f5f5f5;
+/* Colunas específicas */
+th:first-child, td:first-child { width: 25px;}      /* primeira coluna (ID) */
+th.row2, td.row2 { width: calc((100% - 50px - 100px) / 2); } /* segunda coluna */
+th.row3, td.row3 { width: calc((100% - 50px - 100px) / 2); } /* terceira coluna */
+th:last-child, td:last-child { width: 60px; } /* última coluna (botão) */
+
+body {
+    background-color: #f3f3f3;
 }
