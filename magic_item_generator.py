@@ -58,7 +58,7 @@ mystic_obj = [
     "Vela Negra",
     "Pedra Rúnica",
     "Selo Encantado",
-    "Másara Espiritual",
+    "Máscara Espiritual",
     "Totem de Mana",
     "Pingente Místico"
 ]

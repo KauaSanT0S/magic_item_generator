@@ -37,3 +37,13 @@ def delete_item():
         db.session.delete(item)
         db.session.commit()
     return redirect(url_for("routes.homepage"))
+
+@routes.route("/delete-all", methods=["POST"])
+def delete_all():
+    Item.query.delete()
+    db.session.commit()
+    return redirect(url_for("routes.homepage"))
+
+@routes.route("/edit-item", methods=["POST"])
+def edit_item():
+    pass
